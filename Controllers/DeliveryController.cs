@@ -22,7 +22,7 @@ namespace Sprint3_microservice.Controllers
 
             return deliveries;
         }
-        [HttpPost]
+        [HttpPost("create")]
         public async Task Post([FromBody] Delivery delivery)
         {
             await _deliveryService.AddDelivery(delivery);
