@@ -19,8 +19,21 @@ namespace Sprint3_microservice.Services
         public async Task<List<Delivery>> GetAllDeliveries()
         {
             var deliveries = await dbContext.Deliveries.ToListAsync();
-            
+
             return deliveries;
+        }
+
+        public async Task AddDelivery(Delivery delivery)
+        {
+            await dbContext.Deliveries.AddAsync(delivery);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Delivery> GetDeliveryById(int id)
+        {
+            var delivery = await dbContext.Deliveries.FindAsync(id);
+
+            return delivery;
         }
     }
 }

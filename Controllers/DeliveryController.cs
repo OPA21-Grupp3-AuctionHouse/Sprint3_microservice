@@ -22,6 +22,17 @@ namespace Sprint3_microservice.Controllers
 
             return deliveries;
         }
+        [HttpPost]
+        public async Task Post([FromBody] Delivery delivery)
+        {
+            await _deliveryService.AddDelivery(delivery);
+        }
+
+        [HttpGet("{id}", Name = "Get")]
+        public async Task<Delivery> Get(int id)
+        {
+            return await _deliveryService.GetDeliveryById(id);
+        }
 
     }
 }
