@@ -19,6 +19,12 @@ namespace Sprint3_microservice.Services
             await dbContext.Auctions.AddAsync(auction);
             await dbContext.SaveChangesAsync();
         }
+        
+        public async Task<Auction> GetAuctionById(string AuctionId)
+        {
+            var auction = await dbContext.Auctions.(AuctionId);
+            return auction;
+        }
 
         public async Task<List<Auction>> GetAllAuctions()
         {

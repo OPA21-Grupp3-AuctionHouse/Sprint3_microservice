@@ -22,6 +22,13 @@ namespace Sprint3_microservice.Controllers
         {
             await _AuctionService.AddAuction(auction);
         }
+        [HttpGet("getAuctionById")]
+        public async Task<Auction> GetAuction(string AuctionId)
+        {
+            var auction = await _AuctionService.GetAuctionById(AuctionId);
+            return auction;
+        }
+
 
         [HttpGet("getAllAuctions")]
         public async Task<IEnumerable<Auction>> Get()

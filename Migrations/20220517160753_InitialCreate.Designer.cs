@@ -11,7 +11,7 @@ using Sprint3_microservice.Data;
 namespace Sprint3_microservice.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20220517154750_InitialCreate")]
+    [Migration("20220517160753_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
