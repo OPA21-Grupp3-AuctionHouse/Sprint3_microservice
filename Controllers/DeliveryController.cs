@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Sprint3_microservice.Interfaces;
 using Sprint3_microservice.Models;
 
 namespace Sprint3_microservice.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class DeliveryController : Controller
