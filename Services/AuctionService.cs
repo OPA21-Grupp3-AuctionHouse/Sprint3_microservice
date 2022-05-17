@@ -22,7 +22,7 @@ namespace Sprint3_microservice.Services
         
         public async Task<Auction> GetAuctionById(string AuctionId)
         {
-            var auction = await dbContext.Auctions.(AuctionId);
+            Auction auction = dbContext.Auctions.SingleOrDefault(auction => auction.AuctionId == AuctionId);
             return auction;
         }
 
