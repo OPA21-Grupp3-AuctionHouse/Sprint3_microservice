@@ -22,6 +22,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDelivery, DeliveryService>();
+builder.Services.AddScoped<IAuction, AuctionService>();
 
 var app = builder.Build();
 

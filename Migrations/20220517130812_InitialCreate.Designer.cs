@@ -12,7 +12,7 @@ using Sprint3_microservice.Data;
 namespace Sprint3_microservice.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20220511083314_InitialCreate")]
+    [Migration("20220517130812_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,32 @@ namespace Sprint3_microservice.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Sprint3_microservice.Models.Auction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AuctionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("deliveryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("deliveryId");
+
+                    b.ToTable("Auctions");
+                });
+
             modelBuilder.Entity("Sprint3_microservice.Models.Delivery", b =>
                 {
                     b.Property<int>("Id")
@@ -32,12 +58,12 @@ namespace Sprint3_microservice.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("price")
                         .HasColumnType("int");
@@ -45,6 +71,17 @@ namespace Sprint3_microservice.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Deliveries");
+                });
+
+            modelBuilder.Entity("Sprint3_microservice.Models.Auction", b =>
+                {
+                    b.HasOne("Sprint3_microservice.Models.Delivery", "delivery")
+                        .WithMany()
+                        .HasForeignKey("deliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("delivery");
                 });
 #pragma warning restore 612, 618
         }

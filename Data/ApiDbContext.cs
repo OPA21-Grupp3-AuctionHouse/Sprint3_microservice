@@ -9,6 +9,8 @@ namespace Sprint3_microservice.Data
 
         public DbSet<Delivery> Deliveries { get; set; }
 
+        public DbSet<Auction> Auctions { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
