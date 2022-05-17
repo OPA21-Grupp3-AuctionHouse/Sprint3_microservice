@@ -6,7 +6,7 @@ using Sprint3_microservice.Models;
 namespace Sprint3_microservice.Controllers
 {
     [EnableCors]
-    [Route("api/[controller]")]
+    [Route("api/Finished")]
     [ApiController]
     public class AuctionController : Controller
     {
@@ -17,13 +17,13 @@ namespace Sprint3_microservice.Controllers
             _AuctionService = auctionService;
         }
 
-        [HttpPost("createAuction")]
+        [HttpPost("addAuction")]
         public async Task Post([FromBody] Auction auction)
         {
             await _AuctionService.AddAuction(auction);
         }
 
-        [HttpGet]
+        [HttpGet("getAllAuctions")]
         public async Task<IEnumerable<Auction>> Get()
         {
             var auctions = await _AuctionService.GetAllAuctions();

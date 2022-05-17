@@ -37,12 +37,11 @@ namespace Sprint3_microservice.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("deliveryId")
-                        .HasColumnType("int");
+                    b.Property<string>("deliveryMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("deliveryId");
 
                     b.ToTable("Auctions");
                 });
@@ -68,17 +67,6 @@ namespace Sprint3_microservice.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Deliveries");
-                });
-
-            modelBuilder.Entity("Sprint3_microservice.Models.Auction", b =>
-                {
-                    b.HasOne("Sprint3_microservice.Models.Delivery", "delivery")
-                        .WithMany()
-                        .HasForeignKey("deliveryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("delivery");
                 });
 #pragma warning restore 612, 618
         }

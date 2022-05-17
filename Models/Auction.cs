@@ -6,6 +6,6 @@
         public string AuctionId { get; set; }
         public string UserId { get; set; }
 
-        public Delivery delivery { get; set; }
+        public string deliveryMethod { get; set; }
     }
 }
