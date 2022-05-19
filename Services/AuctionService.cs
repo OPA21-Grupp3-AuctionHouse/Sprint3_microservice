@@ -16,6 +16,8 @@ namespace Sprint3_microservice.Services
 
         public async Task AddAuction(Auction auction)
         {
+            DateTime dateTime = DateTime.Now;
+            auction.date = dateTime;
             await dbContext.Auctions.AddAsync(auction);
             await dbContext.SaveChangesAsync();
         }
