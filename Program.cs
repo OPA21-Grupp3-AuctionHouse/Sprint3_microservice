@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using Sprint3_microservice.Interfaces;
 using Sprint3_microservice.Services;
+using System.Net;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -11,7 +13,7 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("http://localhost:3000",
-                                              "http://localhost:8080")
+                                              "http://localhost:8080", "http://146.190.18.26/", "http://localhost:80/", "http://146.190.18.26/5000")
                                                   .AllowAnyHeader()
                                                   .AllowAnyMethod(); ;
                       });
@@ -27,6 +29,20 @@ builder.Services.AddScoped<IDelivery, DeliveryService>();
 builder.Services.AddScoped<IAuction, AuctionService>();
 
 var app = builder.Build();
+
+app.UseForwardedHeaders(
+    new ForwardedHeadersOptions
+    {
+        ForwardedHeaders =
+       ForwardedHeaders.XForwardedFor |
+       ForwardedHeaders.XForwardedProto
+    }
+);
+app.UseAuthentication();
+
+/*builder.Services.Configure<ForwardedHeadersOptions>(options => {
+    options.KnownProxies.Add(IPAddress.Parse("10.10.41.40"));
+});*/
 
 
 // Configure the HTTP request pipeline.
