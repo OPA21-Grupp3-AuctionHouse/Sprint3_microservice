@@ -16,7 +16,7 @@ namespace Sprint3_microservice.Data
         {
 
 
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Deliveries;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;User Id=delivery-admin;Password=grupp3app;Database=Deliveries;Trusted_Connection=True;");
 
         }
     }
