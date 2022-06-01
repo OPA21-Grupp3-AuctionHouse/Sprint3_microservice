@@ -16,7 +16,7 @@ namespace Sprint3_microservice.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            const string connectionString = "Server = localhost; User Id = delivery-admin; Password = AVNS__WwT4zPRCVa6N69; Database = Deliveries";
+            const string connectionString = "Server=localhost;User Id=delivery-admin;Password=grupp3app;Database=Deliveries";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
 
             optionsBuilder.UseMySql(connectionString, serverVersion);
