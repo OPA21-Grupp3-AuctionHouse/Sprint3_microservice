@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Sprint3_microservice.Models;
+using Pomelo.EntityFrameworkCore.MySql;
+
 
 namespace Sprint3_microservice.Data
 {
@@ -14,9 +16,10 @@ namespace Sprint3_microservice.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            const string connectionString = "Server = localhost; User Id = delivery-admin; Password = AVNS__WwT4zPRCVa6N69; Database = Deliveries";
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
 
-
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Deliveries;");
+            optionsBuilder.UseMySql(connectionString, serverVersion);
 
         }
     }
